@@ -1,0 +1,260 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styledeinicio.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="static/assets/vdicone.ico" type="image/x-icon">
+    <title>Listagens</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Garante que a imagem de fundo fique atrás de outros elementos */
+        }
+        body {
+            font-family: Segoe UI Semibold;
+            background-color: #3a3a3a;
+            font-size: 15px;
+        }
+        .footer-image {
+            width: 100%;
+            height: 75px;
+            position: absolute;
+            bottom: 830px;
+            top: 0%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+        }
+        .image1 {
+            width: 100%;
+            height: 3px;
+            top: 75px;
+            left: 0%;
+            position: absolute;
+            z-index: 999;
+        }
+        .image2 {
+            width: 350px;
+            height: auto;
+            top: 08px;
+            left: 50%;
+            position: absolute;
+            transform: translateX(-50%);
+            z-index: 999;
+        }
+        .image3 {
+            width: 210px;
+            height: auto;
+            top: 23px;
+            left: 220px;
+            position: absolute;
+            z-index: 999;
+            transition: transform 0.2s;
+        }
+        .image3:hover{
+            transform: scale(1.04);
+            transition: 0.2s;
+        }
+        .btn-primary{
+            width: 100%;
+            height: 25%;
+            font-size: 18px;
+            border: solid black 1px; /* Remove borda padrão */
+            color: black;
+            background-color: #F2B72F;
+            margin-top: 20%;
+            padding: 10px 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-primary: hover{
+            background-color: black;
+            transform: scale(1.05);
+        }
+
+        .card {
+            height: 26rem; /* Aumente a altura dos cards conforme necessário */
+            transition: transform 0.5s, box-shadow 0.2s; /* Adiciona transição para o efeito de hover */
+            box-shadow: 0 5px 19px rgba(0, 0, 0, 0.8);
+            transition: 0.5s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px); /* Move o card para cima quando o mouse passa sobre ele */
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.8); /* Adiciona uma sombra mais pronunciada */
+            background-color: #dedede;
+            transition: 0.5s;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            background-color: black; /* Cor de fundo */
+            border: none; /* Remove borda padrão */
+            color: white; /* Cor do texto */
+            padding: 10px 20px; /* Espaçamento interno */
+            font-size: 14px; /* Tamanho da fonte */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Cursor de mãozinha ao passar o mouse */
+            transition: background-color 0.3s, transform 0.3s; /* Transição suave para mudanças de cor e transformação */
+            z-index: 9999;
+            margin-left: 25%;
+            margin-top: 2.2%;
+            position: fixed;
+        }
+
+        .btn-back i {
+            margin-right: 10px; /* Espaço entre o ícone e o texto */
+        }
+
+        .btn-back:hover {
+            background-color: black; /* Cor de fundo ao passar o mouse */
+            transform: scale(1.04); /* Aumenta ligeiramente o tamanho do botão */
+        }
+
+        .btn-back:focus, .btn-back:active {
+            outline: none; /* Remove a borda de foco */
+            box-shadow: 0 0 0px rgba(0, 0, 0, 0.0); /* Adiciona sombra ao clicar/focar */
+        }
+            .Botaovoltar {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        top: 2.6%;
+        left: 1%;
+        width: 29px;
+        height: 29px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        position: absolute;
+        overflow: hidden;
+        transition-duration: .3s;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+        background-color: #F2B72F;
+        z-index: 9999;
+        }
+
+        /* plus sign */
+        .sign {
+          width: 100%;
+          transition-duration: .3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .sign svg {
+          width: 17px;
+        }
+
+        .sign svg path {
+          fill: white;
+        }
+        /* text */
+        .text {
+          position: absolute;
+          right: 0%;
+          width: 0%;
+          opacity: 0;
+          color: white;
+          font-size: 1.2em;
+          font-weight: 600;
+          transition-duration: .3s;
+        }
+        /* hover effect on button width */
+        .Botaovoltar:hover {
+          width: 130px;
+          border-radius: 40px;
+          transition-duration: .3s;
+        }
+
+        .Botaovoltar:hover .sign {
+          width: 30%;
+          transition-duration: .3s;
+          padding-left: 20px;
+        }
+        /* hover effect button's text */
+        .Botaovoltar:hover .text {
+          opacity: 1;
+          width: 70%;
+          transition-duration: .3s;
+          padding-right: 10px;
+        }
+        /* button click effect*/
+        .Botaovoltar:active {
+          transform: scale(1.02);
+          background-color: goldenrod;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="{% url 'menu' %}">
+        <button class="Botaovoltar">
+
+            <div class="sign"><svg viewBox="0 0 512 512"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
+
+            <div class="text">Voltar</div>
+        </button>
+    </a>
+
+    <div class="quadradocima"></div>
+    <!-- Cabeçalho com o logotipo e botão de voltar -->
+
+    <!-- Outras imagens -->
+    <img class="footer-image" src="{% static 'img/rodapépreto.jpg' %}">
+    <img class="image1" src="{% static 'img/linhadocabeçalho.jpg' %}">
+    <img class="image2" src="{% static 'img/listagens.jpg' %}">
+    <a href="{% url 'menu' %}">
+        <img class="image3" src="{% static 'img/logoVD_FundoEscuro.png' %}">
+    </a>
+
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <div class="d-flex">
+            <div class="card mx-4" style="width: 19rem;">
+                <img src="{% static 'img/cavaloscard.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Lista de Cavalos</h5>
+                    <p class="card-text">Acesso a listagens de cadastros das informações dos cavalos.</p>
+                    <a href="{% url 'listar-cadastros-cavalos' %}" class="container - btn btn-primary">Acessar</a>
+                </div>
+            </div>
+            <div class="card mx-4" style="width: 19rem;">
+                <img src="{% static 'img/carretacard.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Lista de Carretas</h5>
+                    <p class="card-text">Acesso a listagens de cadastros de informações das carretas.</p>
+                    <a href="{% url 'listar-cadastros-carretas' %}" class="container - btn btn-primary">Acessar</a>
+                </div>
+            </div>
+            <div class="card mx-4" style="width: 19rem;">
+                <img src="{% static 'img/acessorioscard.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Lista de Acessorios</h5>
+                    <p class="card-text">Acesso a listagens de cadastros dos acessórios presentes nas carretas.</p>
+                    <a href="{% url 'listar-cadastros-acessorios' %}" class="container - btn btn-primary">Acessar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
